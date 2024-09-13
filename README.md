@@ -1,6 +1,3 @@
-Here's the updated project documentation with the full flowchart and Mermaid diagrams reflecting the requested color scheme, including colored text and arrows.
-
----
 
 # **Face Liveliness Check in Web Platform**
 
@@ -27,6 +24,43 @@ Here's the updated project documentation with the full flowchart and Mermaid dia
 
 7. **Scalable Architecture**:
    - Built with React frontend and Flask backend.
+
+---
+
+## **Technology Stack**
+
+### **Frontend**
+
+- **React.js**: A JavaScript library for building user interfaces.
+  ![React.js](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg)
+- **Tailwind CSS**: A utility-first CSS framework for creating custom designs.
+  ![Tailwind CSS](https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg)
+
+### **Backend**
+
+- **Flask**: A micro web framework written in Python.
+  ![Flask](https://flask.palletsprojects.com/en/2.3.x/_images/flask-logo.png)
+- **ONNX Runtime**: Cross-platform, high-performance scoring engine for Open Neural Network Exchange (ONNX) models.
+  ![ONNX Runtime](https://onnxruntime.ai/assets/onnxruntime-logo.svg)
+
+### **Machine Learning**
+
+- **YOLOv5**: A state-of-the-art object detection model.
+  ![YOLOv5](https://github.com/ultralytics/yolov5/raw/master/docs/imgs/yolov5.jpg)
+- **DeepFace**: A Python library for deep learning-based face recognition.
+  ![DeepFace](https://deepface.readthedocs.io/en/latest/_images/logo.png)
+
+### **Database**
+
+- **MongoDB**: A NoSQL database for high performance and scalability.
+  ![MongoDB](https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg)
+
+### **Additional Tools**
+
+- **OpenCV**: An open-source computer vision and machine learning software library.
+  ![OpenCV](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/OpenCV_Logo_with_text_svg.svg/800px-OpenCV_Logo_with_text_svg.svg.png)
+- **ONNX**: Open Neural Network Exchange, an open format for AI models.
+  ![ONNX](https://onnx.ai/assets/onnx-logo.svg)
 
 ---
 
@@ -230,10 +264,35 @@ Displays bounding boxes and liveness results on the user's screen.
 **Code Snippet (Display Results)**:
 ```js
 function displayResults(results) {
-    // Logic to render bounding boxes and labels on video feed
+     const videoElement = document.querySelector('video'); // Assuming you're using a <video> element to show the video feed
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size to match video element
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    document.body.appendChild(canvas);
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    results.forEach(result => {
+        const { x, y, width, height, label, status } = result; // Destructure relevant information
+
+        // Draw bounding box
+        ctx.beginPath();
+        ctx.rect(x, y, width, height);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = status === 'real' ? 'green' : status === 'fake' ? 'red' : 'blue'; // Color based on status
+        ctx.stroke();
+        ctx.closePath();
+
+        // Draw label
+        ctx.fillStyle = 'white';
+        ctx.font = '16px Arial';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText(`${label} (${status})`, x, y > 10 ? y - 10 : 10); // Adjust text position to avoid overflow
+    });
 }
 ```
-
----
-
-Feel free to adjust the color scheme, text, or other details as needed for your documentation. Let me know if there are any more changes or additional information required!
