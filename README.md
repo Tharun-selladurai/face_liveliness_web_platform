@@ -1,6 +1,46 @@
 
 # **Face Liveliness Check in Web Platform**
 
+**Face liveness detection** ensures that a face presented to a camera is from a real, living person rather than a static image, video, or mask. It’s essential for preventing spoofing attacks and verifying genuine user interaction.
+
+ **Active and Passive Liveness Detection** are two primary approaches to ensure a face presented to a camera is from a real, living person. Here's a brief overview:
+
+### **Active Liveness Detection**
+
+**Active liveness detection** requires the user to perform specific actions to prove their liveness. This method involves interaction from the user and can be used to distinguish between a live person and a static photo or video.
+
+1. **Blink Detection**:
+   - **Process**: Users are asked to blink their eyes or perform other specific facial movements.
+   - **Purpose**: Ensures that the face is live and responsive.
+
+2. **Head Movement**:
+   - **Process**: Users are prompted to turn their head or follow a moving target on the screen.
+   - **Purpose**: Detects motion that a static image or video cannot replicate.
+
+3. **Action Challenges**:
+   - **Process**: Users are instructed to perform certain actions, such as smiling or nodding.
+   - **Purpose**: Verifies that the person is actively engaging with the system.
+
+### **Passive Liveness Detection**
+
+**Passive liveness detection** does not require user interaction and relies on analyzing the face's properties to determine if it is live.
+
+1. **Texture Analysis**:
+   - **Process**: Examines skin texture and patterns to differentiate between real skin and images or masks.
+   - **Purpose**: Detects anomalies that indicate the use of a static image.
+
+2. **Depth Information**:
+   - **Process**: Uses depth sensors or stereo cameras to capture 3D information about the face.
+   - **Purpose**: Identifies the three-dimensional structure of the face, which static images lack.
+
+3. **Reflection and Glare Analysis**:
+   - **Process**: Analyzes reflections and glare on the face, which are present on real skin but not on printed images.
+   - **Purpose**: Detects inconsistencies that suggest the presence of a photo or video.
+
+4. **Light and Color Analysis**:
+   - **Process**: Assesses how light interacts with the face, including reflections and shadows.
+   - **Purpose**: Ensures the face is real and responds naturally to light changes.
+
 ## **Key Features**
 
 1. **Real-time Face Detection**:
@@ -22,7 +62,11 @@
 6. **DeepFace Integration**:
    - Used for face matching, virtual camera protection, and deepfake prevention.
 
-7. **Scalable Architecture**:
+7. **Virtual Camera Prevention**:
+   - Detects and prevents the use of virtual cameras or software that manipulates the video feed.
+   - Ensures the authenticity of the video source.
+
+8. **Scalable Architecture**:
    - Built with React frontend and Flask backend.
 
 ---
@@ -49,10 +93,10 @@
 
 - **OpenCV**: An open-source computer vision and machine learning software library.
 - **ONNX**: Open Neural Network Exchange, an open format for AI models.
-- 
+
 ## **System Architecture**
 
-The **Face Liveliness Check** system involves capturing video frames from the browser, detecting faces, matching faces, and detecting spoof attacks. Here’s a detailed explanation of each component and how they interact:
+The **Face Liveliness Check** system involves capturing video frames from the browser, detecting faces, matching faces, detecting spoof attacks, and preventing virtual camera use. Here’s a detailed explanation of each component and how they interact:
 
 1. **Video Stream Capture** (React Frontend):
    - Captures live video feed from the user's camera.
@@ -70,7 +114,10 @@ The **Face Liveliness Check** system involves capturing video frames from the br
    - Classifies detected faces as real or spoofed using an ONNX model.
    - Provides liveness detection results.
 
-5. **Result Display** (React Frontend):
+5. **Virtual Camera Prevention** (Flask Backend):
+   - Detects and prevents the use of virtual cameras or software that manipulates the video feed.
+
+6. **Result Display** (React Frontend):
    - Displays bounding boxes around detected faces and the liveness results (real/spoof) in real-time.
 
 ---
@@ -126,7 +173,20 @@ graph TD;
     class A,B antiSpoof;
 ```
 
-### **5. Result Display**
+### **5. Virtual Camera Prevention**
+
+```mermaid
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#e8f5e9", "edgeColor": "#00ff00", "textColor": "#000000" }}}%%
+graph TD;
+    A[<font color="#ff0000">Receive Video Feed</font>] --> B[<font color="#0000ff">Check for Virtual Camera Indicators</font>]
+    B --> C[<font color="#00ff00">Detect Virtual Camera Usage</font>]
+    C --> D[<font color="#ff0000">Alert and Block</font>]
+    
+    classDef prevent fill:#e8f5e9,stroke:#333,color:#000000;
+    class A,B prevent;
+```
+
+### **6. Result Display**
 
 ```mermaid
 %%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#fff9c4", "edgeColor": "#ff0080", "textColor": "#000000" }}}%%
