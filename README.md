@@ -32,38 +32,24 @@
 ### **Frontend**
 
 - **React.js**: A JavaScript library for building user interfaces.
-  ![React.js](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg)
-- **Tailwind CSS**: A utility-first CSS framework for creating custom designs.
-  ![Tailwind CSS](https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg)
 
 ### **Backend**
 
 - **Flask**: A micro web framework written in Python.
-  ![Flask](https://flask.palletsprojects.com/en/2.3.x/_images/flask-logo.png)
+ 
 - **ONNX Runtime**: Cross-platform, high-performance scoring engine for Open Neural Network Exchange (ONNX) models.
-  ![ONNX Runtime](https://onnxruntime.ai/assets/onnxruntime-logo.svg)
 
 ### **Machine Learning**
 
 - **YOLOv5**: A state-of-the-art object detection model.
-  ![YOLOv5](https://github.com/ultralytics/yolov5/raw/master/docs/imgs/yolov5.jpg)
+ 
 - **DeepFace**: A Python library for deep learning-based face recognition.
-  ![DeepFace](https://deepface.readthedocs.io/en/latest/_images/logo.png)
-
-### **Database**
-
-- **MongoDB**: A NoSQL database for high performance and scalability.
-  ![MongoDB](https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg)
 
 ### **Additional Tools**
 
 - **OpenCV**: An open-source computer vision and machine learning software library.
-  ![OpenCV](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/OpenCV_Logo_with_text_svg.svg/800px-OpenCV_Logo_with_text_svg.svg.png)
 - **ONNX**: Open Neural Network Exchange, an open format for AI models.
-  ![ONNX](https://onnx.ai/assets/onnx-logo.svg)
-
----
-
+- 
 ## **System Architecture**
 
 The **Face Liveliness Check** system involves capturing video frames from the browser, detecting faces, matching faces, and detecting spoof attacks. Here’s a detailed explanation of each component and how they interact:
