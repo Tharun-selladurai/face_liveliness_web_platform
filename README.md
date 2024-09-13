@@ -1,66 +1,66 @@
+Here’s the updated project documentation with a full flowchart, detailed explanations, and Mermaid diagrams with colored headings, text, and arrows. The Mermaid diagrams are adjusted to reflect different colors for each module, and text colors are included as comments for CSS styling if needed.
+
+---
 
 # **Face Liveliness Check in Web Platform**
 
 ## **Key Features**
 
-1. **Real-time Face Detection**
-   - Detects live faces in real-time using the user’s camera via the web browser.
+1. **Real-time Face Detection**:
+   - Detects live faces in real-time via the web browser using the user’s camera.
    - Captures video frames for processing.
 
-2. **Anti-Spoofing Protection**
+2. **Anti-Spoofing Protection**:
    - Identifies and prevents spoof attacks (e.g., photos, videos, or masks) using deep learning models.
 
-3. **ONNX Model Integration**
-   - Utilizes ONNX Runtime for fast and efficient model inference.
+3. **ONNX Model Integration**:
+   - Uses ONNX Runtime for fast and lightweight model inference.
 
-4. **DeepFace Integration**
-   - Uses DeepFace for face matching, virtual camera protection, and deepfake prevention.
+4. **Cross-Browser Support**:
+   - Compatible with Chrome, Firefox, and Edge.
 
-5. **Cross-Browser Support**
-   - Compatible with major browsers: Chrome, Firefox, and Edge.
+5. **Face Detection using YOLOv5**:
+   - High-speed and accurate face detection.
 
-6. **Face Detection using YOLOv5**
-   - Employs YOLOv5 for high-speed and accurate face detection.
+6. **DeepFace Integration**:
+   - Used for face matching, virtual camera protection, and deepfake prevention.
 
-7. **OpenCV Face Matching**
-   - Matches faces using ORB descriptors for enhanced recognition.
-
-8. **Scalable Architecture**
-   - Built using React for the frontend and Flask for the backend, allowing easy scalability.
+7. **Scalable Architecture**:
+   - Built with React frontend and Flask backend.
 
 ---
 
 ## **System Architecture**
 
-The **Face Liveliness Check** system involves capturing video frames, detecting and matching faces, and performing anti-spoofing checks. Here’s a breakdown of each component:
+The **Face Liveliness Check** system involves capturing video frames from the browser, detecting faces, matching faces, and detecting spoof attacks. Here’s a detailed explanation of each component and how they interact:
 
-1. **Video Stream Capture** (React Frontend)
-   - Captures live video feed from the user’s camera via the web browser.
-   - Sends frames to the Flask backend for processing.
+1. **Video Stream Capture** (React Frontend):
+   - Captures live video feed from the user's camera.
+   - Sends individual frames to the Flask backend for processing.
 
-2. **Face Detection** (YOLOv5 - Flask Backend)
-   - Processes the video frames to detect faces and draw bounding boxes.
+2. **Face Detection** (YOLOv5 - Flask Backend):
+   - Processes video frames to detect and bound faces.
+   - Outputs bounding box coordinates for detected faces.
 
-3. **Face Matching** (DeepFace - Flask Backend)
-   - Matches faces and ensures virtual camera protection.
+3. **Face Matching** (DeepFace and OpenCV - Flask Backend):
+   - Extracts key points from detected faces and matches them with stored face data using DeepFace and ORB descriptors.
+   - Includes virtual camera protection and deepfake prevention.
 
-4. **Face Matching with ORB Descriptors** (OpenCV - Flask Backend)
-   - Extracts features from faces and matches them with stored data.
+4. **Anti-Spoofing Detection** (ONNX Model - Flask Backend):
+   - Classifies detected faces as real or spoofed using an ONNX model.
+   - Provides liveness detection results.
 
-5. **Anti-Spoofing Detection** (ONNX Model - Flask Backend)
-   - Classifies faces as real or spoofed using an ONNX model.
-
-6. **Result Display** (React Frontend)
-   - Displays bounding boxes and liveness results in real-time.
+5. **Result Display** (React Frontend):
+   - Displays bounding boxes around detected faces and the liveness results (real/spoof) in real-time.
 
 ---
 
-## **Module-Specific Flowcharts**
+## **Flowchart Representation**
 
-### 1. **Video Stream Capture (React Frontend)**
+### **1. Video Stream Capture**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#ff9999", "edgeColor": "#008000", "textColor": "#000000" }}}%%
 graph TD;
     A[Start Camera Stream] -->|Green| B[Capture Video Frames]
     B -->|Green| C[Send Frames to Flask Backend]
@@ -69,10 +69,10 @@ graph TD;
     class A,B capture;
 ```
 
-### 2. **Face Detection (YOLOv5 - Flask Backend)**
+### **2. Face Detection**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#99ff99", "edgeColor": "#ff0000", "textColor": "#000000" }}}%%
 graph TD;
     A[Receive Frame] -->|Red| B[YOLOv5 Model Processing]
     B -->|Red| C[Detect Faces and Draw Bounding Boxes]
@@ -82,10 +82,10 @@ graph TD;
     class A,B detect;
 ```
 
-### 3. **Face Matching with DeepFace and ORB Descriptors (Flask Backend)**
+### **3. Face Matching with DeepFace and ORB Descriptors**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#9999ff", "edgeColor": "#008000", "textColor": "#000000" }}}%%
 graph TD;
     A[Receive Detected Face] -->|Green| B[DeepFace Face Matching]
     B -->|Green| C[Virtual Camera Protection & Deepfake Prevention]
@@ -96,10 +96,10 @@ graph TD;
     class A,B match;
 ```
 
-### 4. **Anti-Spoofing Detection (ONNX - Flask Backend)**
+### **4. Anti-Spoofing Detection**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#ffccff", "edgeColor": "#ff0000", "textColor": "#000000" }}}%%
 graph TD;
     A[Receive Face Image] -->|Red| B[Run ONNX Model Inference]
     B -->|Red| C[Classify as Real or Spoofed]
@@ -108,10 +108,10 @@ graph TD;
     class A,B antiSpoof;
 ```
 
-### 5. **Result Display (React Frontend)**
+### **5. Result Display**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#ffff99", "edgeColor": "#ff0080", "textColor": "#000000" }}}%%
 graph TD;
     A[Receive Detection Result] -->|Pink| B[Display Bounding Box]
     B -->|Pink| C[Display Real/Spoof Label]
@@ -120,45 +120,45 @@ graph TD;
     class A,B display;
 ```
 
----
-
-## **Full Flowchart**
+### **Full Flowchart**
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
+%%{init: { "theme": "default", "themeVariables": { "edgeLabelBackground": "#ffffff", "tertiaryColor": "#ffffff", "primaryColor": "#ff9999", "edgeColor": "#008000", "textColor": "#000000" }}}%%
 graph TD;
-    A[Video Stream from Camera] -->|Green| B[Send Frame to Flask Backend]
-    B -->|Red| C[YOLOv5 Face Detection]
-    C -->|Red| D[Bounding Box of Detected Faces]
-    D -->|Green| E[DeepFace Face Matching]
-    E -->|Green| F[Virtual Camera Protection & Deepfake Prevention]
-    E -->|Green| G[ORB Descriptor Matching]
-    G -->|Green| H[Face Match Result]
-    D -->|Red| I[ONNX Anti-Spoofing Model]
-    I -->|Red| J[Real or Spoof Label]
-    J -->|Pink| K[Send Detection Result to React]
-    K -->|Pink| L[Display Bounding Box and Label]
+    A[Start Camera Stream] -->|Green| B[Capture Video Frames]
+    B -->|Green| C[Send Frames to Flask Backend]
+    C -->|Red| D[YOLOv5 Model Processing]
+    D -->|Red| E[Detect Faces and Draw Bounding Boxes]
+    E -->|Red| F[Bounding Box Coordinates]
+    F -->|Green| G[DeepFace Face Matching]
+    G -->|Green| H[Virtual Camera Protection & Deepfake Prevention]
+    H -->|Green| I[ORB Descriptor Matching]
+    I -->|Green| J[Face Match Result]
+    F -->|Red| K[Run ONNX Model Inference]
+    K -->|Red| L[Classify as Real or Spoofed]
+    L -->|Pink| M[Display Bounding Box]
+    M -->|Pink| N[Display Real/Spoof Label]
     
-    %% Define colors
     classDef capture fill:#ff9999,stroke:#000000,color:#000000;
     classDef detect fill:#99ff99,stroke:#000000,color:#000000;
     classDef match fill:#9999ff,stroke:#000000,color:#000000;
     classDef antiSpoof fill:#ffccff,stroke:#000000,color:#000000;
     classDef display fill:#ffff99,stroke:#000000,color:#000000;
     
-    %% Assign colors to nodes
     class A,B capture;
-    class C,I detect;
-    class E,G match;
-    class J antiSpoof;
-    class K,L display;
+    class C,D detect;
+    class E,F match;
+    class G,H antiSpoof;
+    class I,J display;
+    class K,L antiSpoof;
+    class M,N display;
 ```
 
 ---
 
 ## **Detailed Workflow Explanation**
 
-### 1. **Video Stream Capture (React Frontend)**
+### **1. Video Stream Capture (React Frontend)**
 
 Captures video from the camera using HTML5 `getUserMedia` API. Each frame is sent to the Flask backend for processing.
 
@@ -172,7 +172,7 @@ useEffect(() => {
 }, []);
 ```
 
-### 2. **Face Detection using YOLOv5 (Flask Backend)**
+### **2. Face Detection using YOLOv5 (Flask Backend)**
 
 YOLOv5 processes frames to detect faces. Outputs bounding boxes with coordinates.
 
@@ -187,114 +187,55 @@ def detect_faces(frame):
     return results.xyxy[0]  # Return bounding boxes
 ```
 
-### 3. **Face Matching with DeepFace and ORB Descriptors**
+### **3. Face Matching with DeepFace and ORB Descriptors (Flask Backend)**
 
-- **DeepFace**: Matches detected faces with known faces and provides virtual camera protection.
-- **ORB Descriptors**: Enhances face matching with detailed feature extraction.
+DeepFace and ORB extract key points from faces and match them with stored descriptors. Includes virtual camera protection and deepfake prevention.
 
 **Code Snippet (DeepFace Integration)**:
 ```python
 from deepface import DeepFace
 
-def match_faces(image1, image2):
-    result = DeepFace.verify(image1, image2)
-    return result['verified']
+def match_faces(face_image):
+    result = DeepFace.find(face_image, db_path='path_to_database')
+    return result
 ```
 
-**Code Snippet (ORB Descriptors with OpenCV)**:
+**Code Snippet (ORB Descriptor Matching)**:
 ```python
 import cv2
 
 orb = cv2.ORB_create()
-
-def match_with_orb(image1, image2):
-    kp1, des1 = orb.detectAndCompute(image1, None)
-    kp2, des2 = orb.detectAndCompute(image2, None)
-    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-    matches = bf.match(des1, des2)
-    return len(matches)
+keypoints, descriptors = orb.detectAndCompute(face_image, None)
+# Matching keypoints with stored descriptors...
 ```
 
-### 4. **Anti-Spoofing Detection using ONNX (Flask Backend)**
+### **4. Anti-Spoofing Detection using ONNX (Flask Backend)**
 
 ONNX model classifies faces as real or spoofed. Model inference is quick, typically under 500ms.
 
-**Code Snippet (ONNX Model Inference)**:
+**Code Snippet
+
+ (ONNX Model Inference)**:
 ```python
 import onnxruntime as ort
 
-ort_session = ort.InferenceSession("anti_spoofing_model.onnx")
-
-def run_onnx_model(face_image):
-    input_data = preprocess_image(face_image)
-    outputs = ort_session.run(None, {"input": input_data})
-    return outputs[0]  # Real or spoof label
+def detect_spoof(face_image):
+    session = ort.InferenceSession('model.onnx')
+    result = session.run(None, {'input': face_image})
+    return result
 ```
 
-### 5. **Displaying Results (React Frontend)**
+### **5. Result Display (React Frontend)**
 
-Displays results on the frontend, including bounding boxes and liveness labels.
+Displays bounding boxes and liveness results on the user's screen.
 
-**Code Snippet
-
- (React - Display Results)**:
+**Code Snippet (Display Results)**:
 ```js
-const renderBoundingBox = (bbox, label) => {
-    // Draw bounding box around detected face
-    ctx.strokeRect(bbox.x, bbox.y, bbox.width, bbox.height);
-    ctx.fillText(label, bbox.x, bbox.y - 10);  // Display real/spoof label
-};
+function displayResults(results) {
+    // Logic to render bounding boxes and labels on video feed
+}
 ```
 
 ---
 
-## **Installation**
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/VIBUDESH07/face_liveliness_web_platform
-   cd face_liveliness_web_platform
-   ```
-
-2. **Install Backend Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Install Frontend Dependencies**:
-   Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   npm install
-   ```
-
-4. **Run the Flask Backend**:
-   ```bash
-   python app.py
-   ```
-
-5. **Run the React Frontend**:
-   ```bash
-   npm start
-   ```
-
----
-
-## **Model Training and Conversion**
-
-- **Train Anti-Spoofing Model**:
-  - Use datasets like **CelebA-Spoof** or **CASIA-Surf** for training.
-
-- **Convert Model to ONNX**:
-  - Export your PyTorch model to ONNX format.
-
-  **PyTorch to ONNX Export**:
-  ```python
-  import torch
-
-  dummy_input = torch.randn(1, 3, 224, 224)  # Model input shape
-  torch.onnx.export(trained_model, dummy_input, "anti_spoofing_model.onnx", export_params=True)
-  ```
-
-- **DeepFace Integration for Face Matching**:
-  - Integrate the **DeepFace** module as needed for face verification.
+Feel free to modify the code snippets and flowcharts as needed for your documentation. Let me know if you need any more details or adjustments!
