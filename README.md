@@ -35,7 +35,7 @@
 The **Face Liveliness Check** system involves capturing video frames, detecting and matching faces, and performing anti-spoofing checks. Here’s a breakdown of each component:
 
 1. **Video Stream Capture** (React Frontend)
-   - Captures live video feed from the user’s camera.
+   - Captures live video feed from the user’s camera via the web browser.
    - Sends frames to the Flask backend for processing.
 
 2. **Face Detection** (YOLOv5 - Flask Backend)
@@ -62,91 +62,63 @@ The **Face Liveliness Check** system involves capturing video frames, detecting 
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Start Camera Stream] --> B[Capture Video Frames]
-    B --> C[Send Frames to Flask Backend]
+    A[Start Camera Stream] -->|Green| B[Capture Video Frames]
+    B -->|Green| C[Send Frames to Flask Backend]
     
     classDef capture fill:#ff9999,stroke:#000000,color:#000000;
     class A,B capture;
 ```
-
-**Explanation:**
-- **Start Camera Stream**: Initializes the video stream from the user’s camera.
-- **Capture Video Frames**: Captures frames from the live video feed.
-- **Send Frames to Flask Backend**: Transmits frames for processing.
 
 ### 2. **Face Detection (YOLOv5 - Flask Backend)**
 
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Receive Frame] --> B[YOLOv5 Model Processing]
-    B --> C[Detect Faces and Draw Bounding Boxes]
-    C --> D[Bounding Box Coordinates]
+    A[Receive Frame] -->|Red| B[YOLOv5 Model Processing]
+    B -->|Red| C[Detect Faces and Draw Bounding Boxes]
+    C -->|Red| D[Bounding Box Coordinates]
     
     classDef detect fill:#99ff99,stroke:#000000,color:#000000;
     class A,B detect;
 ```
-
-**Explanation:**
-- **Receive Frame**: Receives video frame from the frontend.
-- **YOLOv5 Model Processing**: Processes the frame to detect faces.
-- **Detect Faces and Draw Bounding Boxes**: Identifies faces and draws bounding boxes.
-- **Bounding Box Coordinates**: Outputs coordinates of detected faces.
 
 ### 3. **Face Matching with DeepFace and ORB Descriptors (Flask Backend)**
 
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Receive Detected Face] --> B[DeepFace Face Matching]
-    B --> C[Virtual Camera Protection & Deepfake Prevention]
-    C --> D[ORB Descriptor Matching]
-    D --> E[Face Match Result]
+    A[Receive Detected Face] -->|Green| B[DeepFace Face Matching]
+    B -->|Green| C[Virtual Camera Protection & Deepfake Prevention]
+    C -->|Green| D[ORB Descriptor Matching]
+    D -->|Green| E[Face Match Result]
     
     classDef match fill:#9999ff,stroke:#000000,color:#000000;
     class A,B match;
 ```
-
-**Explanation:**
-- **Receive Detected Face**: Receives the face image.
-- **DeepFace Face Matching**: Matches faces and ensures virtual camera protection.
-- **Virtual Camera Protection & Deepfake Prevention**: Verifies authenticity.
-- **ORB Descriptor Matching**: Matches features using ORB descriptors.
-- **Face Match Result**: Provides face match results.
 
 ### 4. **Anti-Spoofing Detection (ONNX - Flask Backend)**
 
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Receive Face Image] --> B[Run ONNX Model Inference]
-    B --> C[Classify as Real or Spoofed]
+    A[Receive Face Image] -->|Red| B[Run ONNX Model Inference]
+    B -->|Red| C[Classify as Real or Spoofed]
     
     classDef antiSpoof fill:#ffccff,stroke:#000000,color:#000000;
     class A,B antiSpoof;
 ```
-
-**Explanation:**
-- **Receive Face Image**: Receives the face image for analysis.
-- **Run ONNX Model Inference**: Uses ONNX model to classify face.
-- **Classify as Real or Spoofed**: Outputs liveness result.
 
 ### 5. **Result Display (React Frontend)**
 
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Receive Detection Result] --> B[Display Bounding Box]
-    B --> C[Display Real/Spoof Label]
+    A[Receive Detection Result] -->|Pink| B[Display Bounding Box]
+    B -->|Pink| C[Display Real/Spoof Label]
     
     classDef display fill:#ffff99,stroke:#000000,color:#000000;
     class A,B display;
 ```
-
-**Explanation:**
-- **Receive Detection Result**: Receives results from the backend.
-- **Display Bounding Box**: Shows bounding boxes around faces.
-- **Display Real/Spoof Label**: Displays liveness check results.
 
 ---
 
@@ -155,17 +127,17 @@ graph TD;
 ```mermaid
 %%{init: {'theme': 'default', 'themeVariables': {'edgeLabelBackground':'#ffffff', 'tertiaryColor':'#ffffff'}}}%%
 graph TD;
-    A[Video Stream from Camera] --> B[Send Frame to Flask Backend]
-    B --> C[YOLOv5 Face Detection]
-    C --> D[Bounding Box of Detected Faces]
-    D --> E[DeepFace Face Matching]
-    E --> F[Virtual Camera Protection & Deepfake Prevention]
-    E --> G[ORB Descriptor Matching]
-    G --> H[Face Match Result]
-    D --> I[ONNX Anti-Spoofing Model]
-    I --> J[Real or Spoof Label]
-    J --> K[Send Detection Result to React]
-    K --> L[Display Bounding Box and Label]
+    A[Video Stream from Camera] -->|Green| B[Send Frame to Flask Backend]
+    B -->|Red| C[YOLOv5 Face Detection]
+    C -->|Red| D[Bounding Box of Detected Faces]
+    D -->|Green| E[DeepFace Face Matching]
+    E -->|Green| F[Virtual Camera Protection & Deepfake Prevention]
+    E -->|Green| G[ORB Descriptor Matching]
+    G -->|Green| H[Face Match Result]
+    D -->|Red| I[ONNX Anti-Spoofing Model]
+    I -->|Red| J[Real or Spoof Label]
+    J -->|Pink| K[Send Detection Result to React]
+    K -->|Pink| L[Display Bounding Box and Label]
     
     %% Define colors
     classDef capture fill:#ff9999,stroke:#000000,color:#000000;
@@ -236,9 +208,7 @@ import cv2
 orb = cv2.ORB_create()
 
 def match_with_orb(image1, image2):
-    kp1, des1 = orb
-
-.detectAndCompute(image1, None)
+    kp1, des1 = orb.detectAndCompute(image1, None)
     kp2, des2 = orb.detectAndCompute(image2, None)
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
     matches = bf.match(des1, des2)
@@ -265,7 +235,9 @@ def run_onnx_model(face_image):
 
 Displays results on the frontend, including bounding boxes and liveness labels.
 
-**Code Snippet (React - Display Results)**:
+**Code Snippet
+
+ (React - Display Results)**:
 ```js
 const renderBoundingBox = (bbox, label) => {
     // Draw bounding box around detected face
@@ -326,4 +298,3 @@ const renderBoundingBox = (bbox, label) => {
 
 - **DeepFace Integration for Face Matching**:
   - Integrate the **DeepFace** module as needed for face verification.
-
