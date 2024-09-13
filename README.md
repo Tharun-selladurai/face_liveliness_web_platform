@@ -13,14 +13,6 @@
    - **Process**: Users are asked to blink their eyes or perform other specific facial movements.
    - **Purpose**: Ensures that the face is live and responsive.
 
-2. **Head Movement**:
-   - **Process**: Users are prompted to turn their head or follow a moving target on the screen.
-   - **Purpose**: Detects motion that a static image or video cannot replicate.
-
-3. **Action Challenges**:
-   - **Process**: Users are instructed to perform certain actions, such as smiling or nodding.
-   - **Purpose**: Verifies that the person is actively engaging with the system.
-
 ### **Passive Liveness Detection**
 
 **Passive liveness detection** does not require user interaction and relies on analyzing the face's properties to determine if it is live.
@@ -68,6 +60,7 @@
 
 8. **Scalable Architecture**:
    - Built with React frontend and Flask backend.
+   - Under 500ms and only 5MB
 
 ---
 
