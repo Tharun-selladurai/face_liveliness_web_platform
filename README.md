@@ -1,9 +1,13 @@
-
+![Screenshot 2024-12-12 165856](https://github.com/user-attachments/assets/30794838-c003-4055-a5b8-6ad0f67daaf6)
 # **Face Liveliness Check in Web Platform**
 
 **Face liveness detection** ensures that a face presented to a camera is from a real, living person rather than a static image, video, or mask. It’s essential for preventing spoofing attacks and verifying genuine user interaction.
 
+
 ---
+# **Screenshots**
+"C:\Users\HP\cgpa\Screenshots\Screenshot 2024-12-12 165856.png"
+
 # **Architecture**
 
 ### **1. Video Stream Capture**
