@@ -4,6 +4,33 @@
 **Face liveness detection** ensures that a face presented to a camera is from a real, living person rather than a static image, video, or mask. It’s essential for preventing spoofing attacks and verifying genuine user interaction.
 
 ---
+# **Screenshots**
+### **1. Video Stream Capture**
+
+from graphviz import Digraph
+
+# Create the graph using Graphviz
+dot = Digraph(format='png')
+dot.attr(bgcolor='white', rankdir='TD')
+
+# Define nodes with styling
+dot.node('A', 'Start Camera Stream', color='red', fontcolor='red', style='filled', fillcolor='#f0f0f0')
+dot.node('B', 'Capture Video Frames', color='blue', fontcolor='blue', style='filled', fillcolor='#f0f0f0')
+dot.node('C', 'Send Frames to Flask Backend', color='magenta', fontcolor='magenta', style='filled', fillcolor='#f0f0f0')
+
+# Define edges
+dot.edge('A', 'B')
+dot.edge('B', 'C')
+
+# Save and render the image
+output_path = ![Screenshot 2024-12-12 165856](https://github.com/user-attachments/assets/2b6bf261-17a7-4c7f-9b05-999bc60c04e8)
+'
+dot.render(output_path, format='png', cleanup=True)
+
+print(f"Diagram saved as {output_path}.png")
+
+---
+
 # **Architecture**
 
 ### **1. Video Stream Capture**
