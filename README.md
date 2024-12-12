@@ -2,6 +2,17 @@
 # **Face Liveliness Check in Web Platform**
 
 **Face liveness detection** ensures that a face presented to a camera is from a real, living person rather than a static image, video, or mask. It’s essential for preventing spoofing attacks and verifying genuine user interaction.
+# **Screenshots**
+![Screenshot 2024-12-12 165856](https://github.com/user-attachments/assets/a546ceab-86e3-4b8d-9e7c-dfec76075730)
+![Screenshot 2024-12-12 165930](https://github.com/user-attachments/assets/6384faa2-9284-4924-82b3-cb3e06c17807)
+![Screenshot 2024-12-12 165946](https://github.com/user-attachments/assets/e8d2ca50-20d3-4d9f-a41a-a296beba47c5)
+![Screenshot 2024-12-12 170016](https://github.com/user-attachments/assets/669ff9b3-fabc-4439-b705-bab3c34850e1)
+![Screenshot 2024-12-12 170118](https://github.com/user-attachments/assets/c7b61071-8f4c-435d-a36c-f553fa5372cd)
+
+
+
+
+
 
 ---
 # **Architecture**
